@@ -45,12 +45,21 @@ class PlanController extends Controller
     }
 
     public function destroy($url){
-        $plan = $this->repository->where('url', $url)->first(); //get retorna colection, first 1 unico registro
+        $plan = $this->repository
+                            ->with('details') //pegando do db, pra verificar se tem alguma dependecia pra quando apagar
+                            ->where('url', $url)
+                            ->first(); //get retorna colection, first 1 unico registro
+        
         if(!$plan)
         {
             return redirect()->back();
         }
 
+        if($plan->details->count() > 0)
+        {
+            return redirect()->back()
+                                ->with('error', 'Existem detalhes vinculados a esse plano.');
+        }
         $plan->delete();
         return redirect()->route('plans.index');
     }
