@@ -7,6 +7,17 @@ Route::prefix('admin')
             ->group(function()   //prefix da rota
 {
     /**
+     * Permission x Profiles
+     * 
+     * 
+     */
+    Route::get('profiles/{id}/permissions/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionsProfile')->name('profiles.permissions.detach');
+    Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+    Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+    
+    Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+    /**
      * Routes Details Plans
      */
     Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');
@@ -17,6 +28,20 @@ Route::prefix('admin')
     Route::get('plans/{url}/details/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
     Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
     
+    
+    /**
+     * Routes Permissions
+     */
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
+
+
+    /**
+     * Routes Profiles
+     */
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+
     
 
     /**
@@ -36,9 +61,6 @@ Route::prefix('admin')
      */
     Route::get('/', 'PlanController@index')->name('admin.index');
 });
-
-
-
 
 Route::get('/', function () 
 {
