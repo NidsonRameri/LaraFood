@@ -40,6 +40,7 @@
                                 <a href="{{route('details.plan.index', $plan->url)}}" class="btn btn-dark"><i class="fas fa-angle-double-right"></i> Detalhes</a>
                                 <a href="{{route('plans.show', $plan->url)}}" class="btn btn-info"><i class="fas fa-angle-double-right"></i> Ver</a>
                                 <a href="{{route('plans.edit', $plan->url)}}" class="btn btn-warning"><i class="far fa-edit"></i> Editar</a>
+                                <a href="{{route('plans.profiles', $plan->id)}}" class="btn btn-success"><i class="fas fa-address-book"></i></a>
                             </td>
                         </tr>
                     @endforeach 

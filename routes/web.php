@@ -4,9 +4,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
             ->namespace('Admin') //prefix do controller
+            ->middleware('auth')
             ->group(function()   //prefix da rota
 {
     /**
+     * Plans x Profiles
+     * 
+     * 
+     */
+    Route::get('plans/{id}/profile/{idProfile}/detach', 'ACL\PlanProfileController@detachProfilesPlan')->name('plans.profiles.detach');
+    Route::post('plans/{id}/profiles', 'ACL\PlanProfileController@attachProfilesPlan')->name('plans.profiles.attach');
+    Route::any('plans/{id}/profiles/create', 'ACL\PlanProfileController@profilesAvailable')->name('plans.profiles.available');
+    Route::get('plans/{id}/profiles', 'ACL\PlanProfileController@profiles')->name('plans.profiles');
+    Route::get('profiles/{id}/plan', 'ACL\PlanProfileController@plans')->name('profiles.plans');
+    
+     /**
      * Permission x Profiles
      * 
      * 
@@ -15,8 +27,9 @@ Route::prefix('admin')
     Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
     Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
     Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
-    
     Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+    
+
     /**
      * Routes Details Plans
      */
@@ -62,7 +75,18 @@ Route::prefix('admin')
     Route::get('/', 'PlanController@index')->name('admin.index');
 });
 
-Route::get('/', function () 
-{
-    return view('welcome');
-});
+Route::get('/', 'Site\SiteController@index')->name('site.home');
+
+/**
+ * Auth Routes
+ * Comandos para Authentication PADRÃO do Laravel{
+ *   composer require laravel/ui
+ *
+ *   php artisan ui vue --auth}
+ * 
+ * Mas aqui, usada a autenticação do adminLTE
+ * 
+ * Ambas, conferir doc
+ */
+Auth::routes();
+

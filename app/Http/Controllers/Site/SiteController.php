@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\Site;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Plan;
+
+class SiteController extends Controller
+{
+    public function index()
+    {
+        $plans = Plan::with('details')->orderBy('price', 'asc')->get();
+
+        return view('site.pages.home.index', compact('plans'));
+    }
+}

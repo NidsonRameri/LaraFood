@@ -33,5 +33,13 @@ class Profile extends Model
 
         return $permissions;
     }
+
+    /**
+     * Get plans
+     */
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class);
+    }
 }
 
