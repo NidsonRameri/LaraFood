@@ -13,6 +13,10 @@ class Plan extends Model
         'description'
     ];
 
+    public function tenants(){
+        return $this->hasMany(Tenant::class);
+    }
+
     public function search($filter = null)
     {
         $results = $this
