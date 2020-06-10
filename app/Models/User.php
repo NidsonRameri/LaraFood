@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'tenant_id'
     ];
 
     /**
@@ -36,4 +37,32 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Tenant
+     */
+    public function tenant(){
+        return $this->belongsTo(Tenant::class);
+    }
+    /**
+     * The "booted" method of the model. ESCOPO GLOBAL
+     *
+     * @return void
+     */
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('tenant', function (Builder $builder) {
+    //         $builder->where('tenant_id', auth()->user()->tenant_id); //trazer usuario cujo o tenant sejam o tenant do usuário autenticado
+    //     });
+    // }
+
+    /**
+     * Scope a query to only users by tenant. ESCOPO LOCAL
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTenantUser(Builder $query){
+        return $query->where('tenant_id', auth()->user()->tenant_id);
+    }
 }
