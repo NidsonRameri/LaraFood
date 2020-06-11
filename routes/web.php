@@ -55,11 +55,19 @@ Route::prefix('admin')
     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
     Route::resource('profiles', 'ACL\ProfileController');
 
-        /**
+    /**
      * Routes Users
      */
     Route::any('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
+
+
+
+     /**
+     * Routes Categories
+     */
+    Route::any('categories/search', 'CategoryController@search')->name('categories.search');
+    Route::resource('categories', 'CategoryController');
 
     
 

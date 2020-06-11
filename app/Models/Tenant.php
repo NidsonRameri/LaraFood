@@ -18,7 +18,6 @@ class Tenant extends Model
         'subscription_id',
         'subscription_active',
         'subscription_suspense'
-
     ];
 
     public function users()

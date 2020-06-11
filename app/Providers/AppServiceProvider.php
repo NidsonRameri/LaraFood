@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\PlanObserver;
 use App\Observers\TenantObserver;
+use App\Observers\CategoryObserver;
 use App\Models\Plan;
 use App\Models\Tenant;
 
@@ -31,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Plan::observe(PlanObserver::class);
         Tenant::observe(TenantObserver::class);
+        Category::observe(CategoryObserver::class);
     }
 }
