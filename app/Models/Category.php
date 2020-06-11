@@ -14,4 +14,8 @@ class Category extends Model
         'description',
         'url'
     ];
+
+    public function products(){
+        $this->belongsToMany(Product::class);
+    }
 }

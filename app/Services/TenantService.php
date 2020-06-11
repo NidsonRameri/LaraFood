@@ -27,7 +27,6 @@ class TenantService
         return $this->plan->tenants()->create([
             'cnpj' => $data['cnpj'],
             'name' => $data['name'],
-            
             'email' => $data['email'],
 
             'subscription' => now(),
