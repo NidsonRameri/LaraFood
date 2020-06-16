@@ -18,6 +18,25 @@ class Product extends Model
     ];
 
     public function categories(){
-        $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * Categories not linked with this product
+     */
+    public function categoriesAvailable($filter = null)
+    {
+        $categories = Category::whereNotIn('categories.id', function($query){ //subquery
+            $query->select('category_product.category_id');
+            $query->from('category_product');
+            $query->whereRaw("category_product.product_id={$this->id}");
+        }) //SELECT * FROM 'categories' WHERE id NOT IN (SELECT category_id FROM 'category_product' WHERE product_id=2)
+        ->where(function ($queryFilter) use ($filter){
+            if($filter)
+            $queryFilter->where('categories.name', 'LIKE', "%{$filter}%");
+        })        
+        ->paginate();
+
+        return $categories;
     }
 }

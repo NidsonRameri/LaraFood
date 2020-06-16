@@ -42,6 +42,7 @@
                             <td style='width=10px;'>
                                 <a href="{{route('products.show', $product->id)}}" class="btn btn-info"><i class="fas fa-angle-double-right"></i> Ver</a>
                                 <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning"><i class="far fa-edit"></i> Editar</a>
+                                <a href="{{route('products.categories', $product->id)}}" class="btn btn-warning"><i class="fas fa-layer-group" title="Categorias"></i></a>
                             </td>
                         </tr>
                     @endforeach 
