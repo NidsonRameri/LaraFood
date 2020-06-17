@@ -73,7 +73,11 @@ Route::prefix('admin')
     Route::any('users/search', 'UserController@search')->name('users.search');
     Route::resource('users', 'UserController');
 
-
+    /**
+     * Routes Tables
+     */
+    Route::any('tables/search', 'TableController@search')->name('tables.search');
+    Route::resource('tables', 'TableController');
 
      /**
      * Routes Categories
