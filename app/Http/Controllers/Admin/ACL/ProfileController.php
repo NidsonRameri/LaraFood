@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Http\Requests\StoreUpdateProfileRequest;
+use Illuminate\Auth\Access\Gate;
 
 class ProfileController extends Controller
 {
@@ -13,6 +14,8 @@ class ProfileController extends Controller
 
     public function __construct(Profile $profile){
         $this->repository = $profile; // depositar em repository, um objeto de PROFILE
+    
+        $this->middleware(['can:Perfis']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     /**
@@ -22,6 +25,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        //Gate::allows('permissão'); ou || EM UM METODO
+        //$this->authorize("permissão');
+
         $profiles = $this->repository->paginate();
 
         return view('admin.pages.profiles.index', compact('profiles'));

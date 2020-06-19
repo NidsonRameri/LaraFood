@@ -14,6 +14,8 @@ class PlanProfileController extends Controller
     public function __construct(Plan $plan, Profile $profile){
         $this->plan = $plan;
         $this->profile = $profile;
+
+        $this->middleware(['can:Planos']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     public function profiles($idPlan)

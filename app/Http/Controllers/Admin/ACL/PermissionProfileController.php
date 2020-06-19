@@ -14,6 +14,8 @@ class PermissionProfileController extends Controller
     public function __construct(Profile $profile, Permission $permission){
         $this->profile = $profile;
         $this->permission = $permission;
+
+        $this->middleware(['can:Perfis']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     public function permissions($idProfile){

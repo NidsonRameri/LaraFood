@@ -7,6 +7,8 @@ Route::prefix('admin')
             ->middleware('auth')
             ->group(function()   //prefix da rota
 {
+
+
     /**
      * Product x Profiles
      * 
@@ -88,8 +90,8 @@ Route::prefix('admin')
     /**
      * Routes Products
      */
-    Route::any('products/search', 'ProductController@search')->name('products.search');
-    Route::resource('products', 'ProductController');
+    Route::any('products/search', 'ProductController@search')->name('products.search')->middleware('can:Produtos');
+    Route::resource('products', 'ProductController')->middleware('can:Produtos');//permissão pelas rotas
 
 
     /**

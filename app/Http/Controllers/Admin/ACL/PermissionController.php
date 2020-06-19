@@ -13,6 +13,8 @@ class PermissionController extends Controller
 
     public function __construct(Permission $permission){
         $this->repository = $permission; // depositar em repository, um objeto de permission
+    
+        $this->middleware(['can:Permissões']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     /**

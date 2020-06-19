@@ -1,1 +1,22 @@
 1. Observar quando busca e passa a página não está funcionando.
+
+ACL Autenticação
+
+user
+    tenant
+        plan
+            profiles
+                permissions
+
+
+Carlos Ferreira
+    EspecializaTI
+        Standard
+            Financeiro
+                view_financeiro
+                detail_financeiro
+                add_finanças
+            Gestor Produtos
+                view_product
+            Admin
+                relatórios

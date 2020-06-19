@@ -16,6 +16,8 @@ class DetailPlanController extends Controller
     {
         $this->repository = $detailPlan;
         $this->plan       = $plan;
+
+        $this->middleware(['can:Planos']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     public function index($urlPlan)

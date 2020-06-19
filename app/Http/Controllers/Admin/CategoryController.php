@@ -15,6 +15,8 @@ class CategoryController extends Controller
 
     public function __construct(Category $category){
         $this->repository = $category;
+
+        $this->middleware(['can:Categorias']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
     /**
      * Display a listing of the resource.

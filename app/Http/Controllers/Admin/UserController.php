@@ -13,6 +13,8 @@ class UserController extends Controller
 
     public function __construct(User $user){
         $this->repository = $user; // depositar em repository, um objeto de user
+    
+        $this->middleware(['can:usuários']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     /**
