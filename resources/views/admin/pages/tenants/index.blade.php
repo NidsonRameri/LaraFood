@@ -1,24 +1,20 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Empresas')
 
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{route('categories.index')}}" class='active'>Categorias</a></li>
+        <li class="breadcrumb-item active"><a href="{{route('tenants.index')}}" class='active'>Empresas</a></li>
     </ol>
 
-    <h1>Categorias
-        @can('adicionar_categoria')
-            <a href="{{route('categories.create')}}" class="btn btn-dark"><i class="far fa-calendar-plus"></i> Adicionar categoria</a>
-        @endcan
-    </h1>
+    <h1>Empresas</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{route('categories.search')}}" method="POST" class="form form-inline">
+            <form action="{{route('tenants.search')}}" method="POST" class="form form-inline">
                 @csrf
                 <input type="text" name="filter" placeholder="Nome" class="form-control" value="{{$filters['filter'] ?? ''}}">
                 <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i> Pesquisar</button>
@@ -28,19 +24,22 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
+                        <th>Imagem</th>
                         <th>Nome</th>
-                        <th>Descrição</th>
                         <th width='400'>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($tenants as $tenant)
                         <tr>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->description}}</td>
+                            {{-- php artisan storage:link || criar storage dentro da pasta public para acessar as imagens--}} 
+                            <td>
+                                <img src="{{url("storage/{$tenant->logo}")}}" alt="{{$tenant->name}}" style='max-width: 100px'>    
+                            </td>
+                            <td>{{$tenant->name}}</td>
                             <td style='width=10px;'>
-                                <a href="{{route('categories.show', $category->id)}}" class="btn btn-info"><i class="fas fa-angle-double-right"></i> Ver</a>
-                                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-warning"><i class="far fa-edit"></i> Editar</a>
+                                <a href="{{route('tenants.show', $tenant->id)}}" class="btn btn-info"><i class="fas fa-angle-double-right"></i> Ver</a>
+                                <a href="{{route('tenants.edit', $tenant->id)}}" class="btn btn-warning"><i class="far fa-edit"></i> Editar</a>
                             </td>
                         </tr>
                     @endforeach 
@@ -49,9 +48,9 @@
         </div>
         <div class="card-footer">
             @if (isset($filters))
-                {!! $categories->appends($filters)->links() !!}
+                {!! $tenants->appends($filters)->links() !!}
             @else
-                {!! $categories->links() !!}
+                {!! $tenants->links() !!}
             @endif
             
         </div>

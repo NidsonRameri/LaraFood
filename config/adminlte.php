@@ -210,6 +210,12 @@ return [
     'menu' => [
         
         [
+            'text' => 'Empresas',
+            'url'  => 'admin/tenants',
+            'icon' => "far fa-building",
+            'can'  => 'Empresas'
+        ],
+        [
             'text' => 'Planos',
             'url'  => 'admin/plans',
             'icon' => "far fa-list-alt",

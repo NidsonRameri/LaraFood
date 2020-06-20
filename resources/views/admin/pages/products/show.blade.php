@@ -17,6 +17,9 @@
                 <li>
                     <strong>Flag: </strong> {{$product->flag}}
                 </li>
+                <li>
+                    <strong>Descrição: </strong> {{$product->description}}
+                </li>
             </ul>
 
             @include('admin.includes.alerts')

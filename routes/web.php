@@ -55,7 +55,13 @@ Route::prefix('admin')
     Route::get('plans/{url}/details/{idDetail}', 'DetailPlanController@show')->name('details.plan.show');
     Route::delete('plans/{url}/details/{idDetail}', 'DetailPlanController@destroy')->name('details.plan.destroy');
     
-    
+    /**
+     * Routes Tenants
+     */
+    Route::any('tenants/search', 'TenantController@search')->name('tenants.search');
+    Route::resource('tenants', 'TenantController');
+
+
     /**
      * Routes Permissions
      */
