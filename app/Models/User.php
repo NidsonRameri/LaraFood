@@ -45,6 +45,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function tenant(){
         return $this->belongsTo(Tenant::class);
     }
+
+    /**
+     * Get Roles
+     */
+    public function roles(){
+        return $this->belongsToMany(Role::class);    //Se tabela tivesse nome diferente ao tradicional criado pelo larave, passar aqui como segundo parametro
+    }
+
     /**
      * The "booted" method of the model. ESCOPO GLOBAL
      *
@@ -65,5 +73,24 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function scopeTenantUser(Builder $query){
         return $query->where('tenant_id', auth()->user()->tenant_id);
+    }
+
+    /**
+     * Role not linked with this user
+     */
+    public function rolesAvailable($filter = null)
+    {
+        $roles = Role::whereNotIn('roles.id', function($query){ //subquery
+            $query->select('role_user.role_id');
+            $query->from('role_user');
+            $query->whereRaw("role_user.user_id={$this->id}");
+        }) //SELECT * FROM 'roles' WHERE id NOT IN (SELECT role_id FROM 'role_role' WHERE role_id=2)
+        ->where(function ($queryFilter) use ($filter){
+            if($filter)
+            $queryFilter->where('roles.name', 'LIKE', "%{$filter}%");
+        })        
+        ->paginate();
+
+        return $roles;
     }
 }

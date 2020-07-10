@@ -8,6 +8,29 @@ Route::prefix('admin')
             ->group(function()   //prefix da rota
 {
 
+    /**
+     * Role x User
+     * 
+     * 
+     */
+    Route::get('users/{id}/role/{idRole}/detach', 'ACL\RoleUserController@detachRolesUser')->name('users.roles.detach');
+    Route::post('users/{id}/roles', 'ACL\RoleUserController@attachRolesUser')->name('users.roles.attach');
+    Route::any('users/{id}/roles/create', 'ACL\RoleUserController@rolesAvailable')->name('users.roles.available');
+    Route::get('users/{id}/roles', 'ACL\RoleUserController@roles')->name('users.roles');
+    Route::get('roles/{id}/user', 'ACL\RoleUserController@users')->name('roles.plans');
+    
+
+     /**
+     * Permission x Roles
+     * 
+     * 
+     */
+    Route::get('roles/{id}/permissions/{idPermission}/detach', 'ACL\PermissionRoleController@detachPermissionsRole')->name('roles.permissions.detach');
+    Route::post('roles/{id}/permissions', 'ACL\PermissionRoleController@attachPermissionsRole')->name('roles.permissions.attach');
+    Route::any('roles/{id}/permissions/create', 'ACL\PermissionRoleController@permissionsAvailable')->name('roles.permissions.available');
+    Route::get('roles/{id}/permissions', 'ACL\PermissionRoleController@permissions')->name('roles.permissions');
+    Route::get('permissions/{id}/role', 'ACL\PermissionRoleController@roles')->name('permissions.roles');
+    
 
     /**
      * Product x Profiles
@@ -67,6 +90,13 @@ Route::prefix('admin')
      */
     Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
     Route::resource('permissions', 'ACL\PermissionController');
+
+    /**
+     * Routes Roles
+     */
+    Route::any('roles/search', 'ACL\RoleController@search')->name('roles.search');
+    Route::resource('roles', 'ACL\RoleController');
+
 
 
     /**
