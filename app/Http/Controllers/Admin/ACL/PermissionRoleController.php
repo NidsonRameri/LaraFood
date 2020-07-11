@@ -15,7 +15,7 @@ class PermissionRoleController extends Controller
         $this->role = $role;
         $this->permission = $permission;
 
-        $this->middleware(['can:Pemissoes']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
+        $this->middleware(['can:Pemissões']); //LIMITANDO ACESSO ACL DE TODO O CONTROLLER
     }
 
     public function permissions($idRole){

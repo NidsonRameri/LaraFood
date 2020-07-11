@@ -166,5 +166,5 @@ Route::get('/', 'Site\SiteController@index')->name('site.home');
  * 
  * Ambas, conferir doc
  */
-Auth::routes();
+Auth::routes(['verify' => false]);
 

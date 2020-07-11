@@ -9,9 +9,10 @@
     </ol>
 
     <h1>Categorias
-        @can('adicionar_categoria')
             <a href="{{route('categories.create')}}" class="btn btn-dark"><i class="far fa-calendar-plus"></i> Adicionar categoria</a>
-        @endcan
+        {{-- @can('adicionar_categoria') // RESTRINGIR PERMISSÃO
+            <a href="{{route('categories.create')}}" class="btn btn-dark"><i class="far fa-calendar-plus"></i> Adicionar categoria</a>
+        @endcan --}}
     </h1>
 @stop
 
