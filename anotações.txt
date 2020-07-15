@@ -20,3 +20,13 @@ Carlos Ferreira
                 view_product
             Admin
                 relatórios
+
+
+    API
+
+routes/api.php  
+Controllers         // delegando
+    Form Requests   // validação
+    Resources       // tipo de retorno dos dados
+    Service Layers  // lógica 
+    Repositories    // retorno dos dados
