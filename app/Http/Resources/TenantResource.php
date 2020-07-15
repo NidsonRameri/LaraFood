@@ -19,6 +19,7 @@ class TenantResource extends JsonResource
         return [
             //controle da forma como retorna
             'name' => $this->name,
+            "image"=> $this->logo ? url("storage/{$this->logo}") : "",
             'uuid' => $this->uuid,
             'flag' => $this->url,
             'contact' => $this->email,
