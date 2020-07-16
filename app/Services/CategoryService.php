@@ -6,7 +6,7 @@ use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\TenantRepositoryInterface;
 
 class CategoryService{
-    // ==> repository service provider . php
+    //Criando API --- 3º PASSO =>(prox)=> CategoryRepositoryInterface && CategoryRepository
 
     protected $categoryRepository, $tenantRepository;
 
@@ -21,5 +21,9 @@ class CategoryService{
         $tenant = $this->tenantRepository->getTenantByUuid($uuid);
     
         return $this->categoryRepository->getCategoriesByTenantId($tenant->id);
+    }
+
+    public function getCategoryByUrl(string $url){
+        return $this->categoryRepository->getCategoryByUrl($url);
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Resources\CategoryResource;
 use App\Services\CategoryService;
 
 class CategoryApiController extends Controller
-{
+{   //Criando API --- 2º PASSO =>(prox)=> CategoryService
     protected $categoryService;
 
     public function __construct(CategoryService $categoryService)
@@ -25,5 +25,12 @@ class CategoryApiController extends Controller
         
         $categories = $this->categoryService->getCategoriesByUuid($request->token_company);
         return CategoryResource::collection($categories);
+    }
+
+    public function show(TenantFormRequest $request, $url){
+        if(!$category = $this->categoryService->getCategoryByUrl($url)){
+            return response()->json(['message' => 'Category Not Found'], 404);
+        }
+        return new CategoryResource($category);
     }
 }
