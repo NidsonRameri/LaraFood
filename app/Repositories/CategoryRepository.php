@@ -6,7 +6,7 @@ use App\Repositories\Contracts\CategoryRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class CategoryRepository implements CategoryRepositoryInterface{
-    //Criando API --- 4º PASSO =>(prox)=> 
+    //Criando API --- 4º PASSO =>(prox)=> RepositoryServiceProvider
     //queryBuilder (não eloquent)
     protected $table;
     public function __construct()
