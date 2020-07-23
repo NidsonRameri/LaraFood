@@ -22,6 +22,9 @@ Route::get('/categories', 'Api\CategoryApiController@categoriesByTenant');
 Route::get('/tables/{identify}', 'Api\TableApiController@show'); //Criando API --- 1º PASSO =>(prox)=> TableApiController
 Route::get('/tables', 'Api\TableApiController@tablesByTenant');
 
+Route::get('/products', 'Api\ProductApiController@productsByTenant');
+
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
