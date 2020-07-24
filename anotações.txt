@@ -25,7 +25,7 @@ Carlos Ferreira
     API
 
 routes/api.php  
-Controllers         // delegando
+    Controllers     // delegando
     Form Requests   // validação
     Resources       // tipo de retorno dos dados
     Service Layers  // lógica 

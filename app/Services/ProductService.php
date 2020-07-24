@@ -4,24 +4,29 @@ namespace App\Services;
 
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\TenantRepositoryInterface;
+use App\Repositories\ProductRepository;
 
 class ProductService{
     //Criando API --- 3º PASSO =>(prox)=> ProductRepositoryInterface && ProductRepository
-    protected $productService, $tenantRepository;
+    protected $productRepository, $tenantRepository;
 
     public function __construct(
-        ProductRepositoryInterface $productService,
+        ProductRepositoryInterface $productRepository,
         TenantRepositoryInterface $tenantRepository
     )
     {
-        $this->productService = $productService;
+        $this->productRepository = $productRepository;
         $this->tenantRepository = $tenantRepository;   
     }
 
-    public function getProductsByTenantUuid(String $uuid){
+    public function getProductsByTenantUuid(String $uuid, array $categories){
         $tenant = $this->tenantRepository->getTenantByUuid($uuid);
 
-        return $this->productService->getProductsByTenantId($tenant->id);
+        return $this->productRepository->getProductsByTenantId($tenant->id, $categories);
+    }
+
+    public function getProductByFlag(string $flag){
+        return $this->productRepository->getProductByFlag($flag);
     }
 
 }
