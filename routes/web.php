@@ -1,13 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Client;
+
+Route::get('/teste', function(){
+    $client = Client::first();
+
+    $token = $client->createToken('tokenTeste'); //permissões *
+    // $client->createToken('tokenTeste', ['*']); permissões * -todas se não passar nada
+
+    dd($token->plainTextToken);
+});
 
 Route::prefix('admin')
             ->namespace('Admin') //prefix do controller
             ->middleware('auth')
             ->group(function()   //prefix da rota
 {
-
+    
     /**
      * Role x User
      * 

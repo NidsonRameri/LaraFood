@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/sanctum/token', "Api\Auth\AuthClientController@auth");
+
+Route::group(["middleware" => ["auth:sanctum"]], 
+    function(){    
+        Route::get('/me', "Api\Auth\AuthClientController@me"); //tem que ter o middleware
+        Route::post('/logout', "Api\Auth\AuthClientController@logout"); //tem que ter o middleware
+    });
+
+
+
 Route::group([
     'prefix' => 'v1',
     'namespace' => 'Api'
@@ -29,6 +41,8 @@ Route::group([
 
     Route::get('/products/{flag}', 'ProductApiController@show');
     Route::get('/products', 'ProductApiController@productsByTenant');
+
+    Route::post('/client', 'Auth\RegisterController@store');
 });
 
 
