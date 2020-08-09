@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,17 +32,22 @@ Route::group([
     Route::get('/tenants/{uuid}', 'TenantApiController@show');
     Route::get('/tenants', 'TenantApiController@index');
 
-    Route::get('/categories/{url}', 'CategoryApiController@show'); //Criando API --- 1º PASSO =>(prox)=> CategoryApiController
+    Route::get('/categories/{identify}', 'CategoryApiController@show'); //Criando API --- 1º PASSO =>(prox)=> CategoryApiController
     Route::get('/categories', 'CategoryApiController@categoriesByTenant');
 
     Route::get('/tables/{identify}', 'TableApiController@show'); //Criando API --- 1º PASSO =>(prox)=> TableApiController
     Route::get('/tables', 'TableApiController@tablesByTenant');
 
-    Route::get('/products/{flag}', 'ProductApiController@show');
+    Route::get('/products/{identify}', 'ProductApiController@show');
     Route::get('/products', 'ProductApiController@productsByTenant');
 
     Route::post('/client', 'Auth\RegisterController@store');
+
+    Route::post('/orders', "OrderApiController@store");    
+    Route::get('/orders/{identify}', "OrderApiController@show");
+
 });
+    
 
 
 

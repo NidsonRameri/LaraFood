@@ -21,11 +21,10 @@ class CategoryRepository implements CategoryRepositoryInterface{
             ->select('categories.*')
             ->get();
     }
-
     public function getCategoriesByTenantId(int $idTenant){
         return DB::table($this->table)->where("tenant_id", $idTenant)->get();
     }
-    public function getCategoryByUrl(string $url){
-        return DB::table($this->table)->where("url", $url)->first();
+    public function getCategoryByUuid(string $uuid){
+        return DB::table($this->table)->where("uuid", $uuid)->first();
     }
 }

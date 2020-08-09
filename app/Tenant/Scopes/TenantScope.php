@@ -17,7 +17,10 @@ class TenantScope implements Scope{ //CRIANDO SCOPE
      */
     public function apply(Builder $builder, Model $model){
         
-        $builder->where('tenant_id', app(MenageTenant::class)->getTenantIdentify());
+        $identify = app(MenageTenant::class)->getTenantIdentify();
+
+        if($identify)
+            $builder->where('tenant_id', $identify);
         //filtrar pela coluna 'tenant_id' => igual, nao precisa passar indicador ('<'), ->
     }
 }

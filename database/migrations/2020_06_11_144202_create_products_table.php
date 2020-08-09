@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->uuid("uuid"); //observable está criando
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
             $table->string('title')->unique();
             $table->string('flag')->unique();
@@ -23,7 +24,8 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->timestamps();
         });
-            // logica manytomany
+        // logica manyToMany
+            
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
@@ -39,7 +41,8 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        // Deletar primeiro tabelas relacionadas
         Schema::dropIfExists('category_product');
+        Schema::dropIfExists('products');
     }
 }

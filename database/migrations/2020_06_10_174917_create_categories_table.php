@@ -15,6 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->uuid("uuid"); //observable está criando
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
             $table->string('name')->unique();
             $table->string('url')->unique();

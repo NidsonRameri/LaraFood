@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class ProductObserver
 {
+    // SE ESTIVER USANDO O MODEL PARA CADASTRAR...
     /**CREATING, ANTES DE CADASTRAR // REGISTRAR OBSERVER NO APPSERVICEPROVIDER
      * Handle the Product "creating" event. 
      *
@@ -16,6 +17,7 @@ class ProductObserver
      */
     public function creating(Product $product)
     {
+        $product->uuid = Str::uuid();
         $product->flag = Str::kebab($product->title);
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class CategoryObserver
 {
+    // SE ESTIVER USANDO O MODEL PARA CADASTRAR...
     /**CREATING, ANTES DE CADASTRAR // REGISTRAR OBSERVER NO APPSERVICEPROVIDER
      * Handle the Category "creating" event. 
      *
@@ -15,6 +16,7 @@ class CategoryObserver
      */
     public function creating(Category $category)
     {
+        $category->uuid = Str::uuid();
         $category->url = Str::kebab($category->name);
     }
 
