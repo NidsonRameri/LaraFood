@@ -30,3 +30,6 @@ routes/api.php
     Resources       // tipo de retorno dos dados
     Service Layers  // lógica 
     Repositories    // retorno dos dados
+
+
+||| APP\HTTP\REQUESTS => VALIDAR CADASTRO OU EDIÇÃO

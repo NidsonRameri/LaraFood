@@ -14,4 +14,7 @@ interface OrderRepositoryInterface{
         $tableId = ''
     );
     public function getOrderByIdentify(String $identify);
+    public function registerProductsOrder(int $orderId, array $products);
+    public function getOrdersByClientId(int $idClient);
+    
 }

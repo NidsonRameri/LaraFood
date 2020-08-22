@@ -20,6 +20,12 @@ Route::group(["middleware" => ["auth:sanctum"]],
     function(){    
         Route::get('/me', "Api\Auth\AuthClientController@me"); //tem que ter o middleware
         Route::post('/logout', "Api\Auth\AuthClientController@logout"); //tem que ter o middleware
+    
+        Route::post('/auth/v1/orders/{identifyOrder}/evaluations', "Api\EvaluationApiController@store");
+
+        Route::get('/auth/v1/my-orders', "Api\OrderApiController@myOrders");
+        Route::post('auth/v1/orders', "Api\OrderApiController@store");
+    
     });
 
 
