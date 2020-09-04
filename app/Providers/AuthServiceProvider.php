@@ -28,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        if($this->app->runningInConsole()) return; // pula para conseguir jogar no bd na fase de testes
+
         $permissions = Permission::all();
 
         foreach ($permissions as $permission){
