@@ -19,6 +19,8 @@ class EvaluationApiController extends Controller
     public function store(StoreEvaluationOrder $request){
         $data = $request->only('stars', 'comment');
         $evaluation =   $this->evaluationService->createNewEvaluation($request->identifyOrder, $data);
-        return new EvaluationResource($evaluation);
+        return (new EvaluationResource($evaluation))
+                   ->reponse()
+                   ->setStatusCode(201);
     }
 }

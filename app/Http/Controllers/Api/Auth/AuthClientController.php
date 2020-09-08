@@ -22,7 +22,7 @@ class AuthClientController extends Controller
 
         if (!$client || !Hash::check($request->password, $client->password)){
             // HASH - senha do BD tá crypt e $request->password não, ele consegue validar as duas
-            return response()->json(["message", "Credenciais inválidas"], 404);
+            return response()->json(['message' => trans('messages.invalid_credentials')], 404);
         }
 
         $token = $client->createToken($request->device_name)->plainTextToken;

@@ -33,3 +33,7 @@ routes/api.php
 
 
 ||| APP\HTTP\REQUESTS => VALIDAR CADASTRO OU EDIÇÃO
+
+
+AJEITAR => retornar 401 está a retornar 404...
+testErrorCreateNewEvaluation

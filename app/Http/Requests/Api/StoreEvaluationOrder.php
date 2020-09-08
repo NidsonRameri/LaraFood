@@ -14,11 +14,11 @@ class StoreEvaluationOrder extends FormRequest
      */
     public function authorize()
     {
-        $client =  auth()->user();
+        //$client =  auth()->user();
         
-        // if(!$client =  auth()->user()){ //OU MIDDLEWARE  APLICADO OU ASSIM
-        //     return false;
-        // }
+        if(!$client =  auth()->user()){ //OU MIDDLEWARE  APLICADO OU ASSIM
+            return false;
+        }
 
         if(!$order = app(OrderRepositoryInterface::class)->getOrderByIdentify($this->identifyOrder))  //nome do parametro la na  api.php
         {
