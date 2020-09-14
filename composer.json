@@ -17,7 +17,8 @@
         "laravel/sanctum": "^2.4",
         "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "simplesoftwareio/simple-qrcode": "~3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
