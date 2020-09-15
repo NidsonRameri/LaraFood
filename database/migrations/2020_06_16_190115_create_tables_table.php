@@ -17,7 +17,7 @@ class CreateTablesTable extends Migration
             $table->id();
             $table->uuid("uuid"); //observable está criando
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
-            $table->string('identify')->unique();
+            $table->string('identify');
             $table->string('description')->nullable();
             $table->timestamps();
         });

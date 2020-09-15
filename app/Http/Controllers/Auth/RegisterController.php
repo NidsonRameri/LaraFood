@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\TenantCreated;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\User;
 use App\Services\TenantService;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -56,8 +52,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'min:8','max:255'],
             'email' => ['required', 'string', 'email', 'min:8','max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'max:16','confirmed'],
-            'cnpj' => ['required', 'unique:tenants'],
             'empresa' => ['required', 'string','min:3', 'max:255','unique:tenants,name'],
+            'cnpj' => ['required', 'numeric', 'digits:14','unique:tenants'],
         ]);
     }
 
